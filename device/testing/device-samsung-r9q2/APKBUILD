@@ -1,0 +1,39 @@
+# Reference: <https://postmarketos.org/devicepkg>
+maintainer=""
+pkgname=device-samsung-r9q2
+pkgdesc="Samsung Galaxy S21 FE 5G"
+pkgver=1
+pkgrel=0
+url="https://postmarketos.org"
+license="MIT"
+arch="aarch64"
+options="!check !archcheck"
+depends="
+	linux-postmarketos-qcom-sm8350
+	mkbootimg
+	postmarketos-base
+	soc-qcom-sm8350
+"
+makedepends="devicepkg-dev"
+source="
+	deviceinfo
+"
+subpackages="$pkgname-nonfree-firmware:nonfree_firmware"
+
+build() {
+	devicepkg_build $startdir $pkgname
+}
+
+package() {
+	devicepkg_package $startdir $pkgname
+}
+
+nonfree_firmware() {
+	pkgdesc="Modem, WiFi, and GPU Firmware"
+	depends="firmware-samsung-r9q2"
+	mkdir "$subpkgdir"
+}
+
+sha512sums="
+063ec4cfab292c66b9fdd8d0d3bed16be2ce325f1d9325bac08bcf9506b9f6909a3429b7b1c2a0a0cd88454c8fd9b5c15e7542f24a899640e8166809224f91bc  deviceinfo
+"
