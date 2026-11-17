@@ -4,7 +4,7 @@ pkgver=2
 pkgrel=0
 _commit="40d43033f1394411935f308448762a95d4031eb9"
 pkgdesc="Firmware files for Samsung R9Q2"
-url="https://git.piecuu.pl/Piecuu/firmware-samsung-r9q2"
+url="https://github.com/ProZanya/firmware-samsung-r9q2"
 arch="aarch64"
 # TODO: Use firmware-qcom-adreno-a660 which provides a660_gmu.bin
 depends="linux-firmware-qcom" # linux-firmware-qca"
