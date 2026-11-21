@@ -12,18 +12,13 @@ license="proprietary"
 source="$pkgname-$_commit.tar.gz::$url/archive/$_commit.tar.gz 10-remoteproc-firmware.files 20-ipa_fws.files 30-gpu-firmware.files"
 
 options="!check !strip !archcheck !spdx !tracedeps pmb:cross-native"
-builddir="$srcdir/firmware-samsung-r9q2"
+builddir="$srcdir/firmware-samsung-r9q2-$_commit"
 #subpackages="$pkgname-initramfs:firmware_initramfs"
 
 package() {
-	_files="a660_zap.mbn a660_gmu.bin a660_sqe.fw adsp.mbn cdsp.mbn ipa_fws.mbn modem.mbn slpi.mbn board-2.bin"
+	_files="a660_zap.mbn a660_gmu.bin a660_sqe.fw adsp.mbn cdsp.mbn ipa_fws.mbn modem.mbn slpi.mbn"
 	for _i in $_files; do
 		install -Dm644 "$_i" "$pkgdir/lib/firmware/qcom/sm8350/Samsung/r9q2/$_i"
-	done
-
-	_files_qca="hpbtfw10.tlv hpnv10.bin" #"amss20.bin m3.bin regdb.bin" #"hpbtfw10.tlv hpnv10.bin"
-	for _i in $_files_qca; do
-		install -Dm644 "$_i" "$pkgdir/lib/firmware/qca/$_i"
 	done
 
 	install -Dm644 "$srcdir/10-remoteproc-firmware.files" "$pkgdir/usr/share/mkinitfs/files-extra/10-remoteproc-firmware.files"
@@ -33,7 +28,7 @@ package() {
 }
 
 sha512sums="
-dd236115721381dc315619241296f8dce492e41dd21b6e5665937df7e7735f04ed8524e914165b740dd892821c6cbc7f00ec768a77b4e8fdb9dc84bca955e412  firmware-samsung-r9q2-40d43033f1394411935f308448762a95d4031eb9.tar.gz
+76a662b75d2ff03c0070cc010b55868edb8aa68c71d7922db1d41fbeb61598ab769fa7c39b873a7e0e170a352da0e3f99db1175f2aea4161e70d5dfa69a50bb3  firmware-samsung-r9q2-40d43033f1394411935f308448762a95d4031eb9.tar.gz
 854b5273807ff7bc2ebda4e6f710fd68842a3452a6bdb9773d47290964adbab4c3b914ec6488838a8f710ae21b96d3bc80645c91e0ee655cfc0f2cf2cbc22d73  10-remoteproc-firmware.files
 9ae17a5b1e684259150d3b25e71865b52181f53ef355c4cfab6c45d68c533e20ded514894284d65be41cfd98c88aded1d9d663929de732f7c70d7b251ed9ef14  20-ipa_fws.files
 e12bf30dda667edfb2677f77f3200d8f0bb41dc6dbde704386e6f58d3196248e65c5d38634e1b63b2f40253332b0b5e5d54e7165ca330c20b93243c9835adc4b  30-gpu-firmware.files
